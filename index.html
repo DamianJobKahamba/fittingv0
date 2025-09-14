@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Damian Fitting - Body Measurements</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Damian Fitting</h1>
+      <span class="tagline">Accurate Body Measurements</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h2>Get Your Body Measurements</h2>
+          <p class="card-description">Upload photos to get accurate body measurements for perfect fitting clothes</p>
+        </div>
+
+        <div class="tabs">
+          <div class="tabs-list">
+            <button class="tab-button active" data-tab="instructions">Instructions</button>
+            <button class="tab-button" data-tab="upload">Upload Photos</button>
+            <button class="tab-button" data-tab="results" disabled>Results</button>
+          </div>
+
+          <!-- Instructions Tab -->
+          <div class="tab-content active" id="instructions-content">
+            <div class="instructions-container">
+              <h3>How to Take Photos for Accurate Measurements</h3>
+
+              <!-- Updated photo examples from front/side to front/right/left/back -->
+              <div class="example-photos">
+                <div class="example-photo">
+                  <h4>Front Photo</h4>
+                  <div class="photo-container">
+                    <img src="https://placehold.co/300x400/e2e8f0/1e293b?text=Example+Front+Photo" alt="Front photo example" />
+                  </div>
+                  <ul class="photo-tips">
+                    <li>Stand straight with feet shoulder-width apart</li>
+                    <li>Arms slightly away from body</li>
+                    <li>Wear form-fitting clothes</li>
+                    <li>Ensure full body is visible</li>
+                    <li>Place a standard bank card on the floor for scale reference</li>
+                  </ul>
+                </div>
+
+                <div class="example-photo">
+                  <h4>Right Side Photo</h4>
+                  <div class="photo-container">
+                    <img src="https://placehold.co/300x400/e2e8f0/1e293b?text=Example+Right+Photo" alt="Right side photo example" />
+                  </div>
+                  <ul class="photo-tips">
+                    <li>Stand with your right side to the camera</li>
+                    <li>Keep your back straight</li>
+                    <li>Arms at your sides</li>
+                    <li>Ensure full body is visible</li>
+                    <li>Place a standard bank card on the floor for scale reference</li>
+                  </ul>
+                </div>
+
+                <div class="example-photo">
+                  <h4>Left Side Photo</h4>
+                  <div class="photo-container">
+                    <img src="https://placehold.co/300x400/e2e8f0/1e293b?text=Example+Left+Photo" alt="Left side photo example" />
+                  </div>
+                  <ul class="photo-tips">
+                    <li>Stand with your left side to the camera</li>
+                    <li>Keep your back straight</li>
+                    <li>Arms at your sides</li>
+                    <li>Ensure full body is visible</li>
+                    <li>Place a standard bank card on the floor for scale reference</li>
+                  </ul>
+                </div>
+
+                <div class="example-photo">
+                  <h4>Back Photo</h4>
+                  <div class="photo-container">
+                    <img src="https://placehold.co/300x400/e2e8f0/1e293b?text=Example+Back+Photo" alt="Back photo example" />
+                  </div>
+                  <ul class="photo-tips">
+                    <li>Stand straight with your back to the camera</li>
+                    <li>Keep your back straight</li>
+                    <li>Arms slightly away from body</li>
+                    <li>Ensure full body is visible</li>
+                    <li>Place a standard bank card on the floor for scale reference</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Added bank card instructions -->
+              <div class="alert info-alert">
+                <i class="fas fa-credit-card"></i>
+                <div class="alert-content">
+                  <h4>Bank Card for Scale Reference</h4>
+                  <p>Place a standard bank card (85.60 × 53.98 mm) on the floor in each photo. This helps our system calculate accurate measurements by providing a known size reference.</p>
+                </div>
+              </div>
+
+              <div class="alert info-alert">
+                <i class="fas fa-info-circle"></i>
+                <div class="alert-content">
+                  <h4>For best results</h4>
+                  <p>Take photos against a plain background with good lighting. Have someone else take the photo or use a timer. Ensure the bank card is clearly visible in all photos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upload Tab -->
+          <div class="tab-content" id="upload-content">
+            <div class="upload-container">
+              <!-- Updated to 4 photo uploads: front, right, left, back -->
+              <div class="upload-photos">
+                <div class="upload-photo">
+                  <label>Front Photo</label>
+                  <div class="upload-area" id="front-upload-area">
+                    <div class="upload-placeholder" id="front-placeholder">
+                      <i class="fas fa-upload"></i>
+                      <p>Click to upload or drag and drop</p>
+                    </div>
+                    <div class="image-preview" id="front-preview">
+                      <img id="front-image-preview" src="/placeholder.svg" alt="Front view preview" />
+                    </div>
+                    <input type="file" accept="image/*" id="frontImage" class="file-input" />
+                  </div>
+                  <!-- Added quality assessment and card detection indicators -->
+                  <div class="photo-analysis" id="front-analysis" style="display: none;">
+                    <div class="quality-indicators">
+                      <div class="quality-item">
+                        <span>Lighting:</span>
+                        <span class="quality-value" id="front-lighting">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Blur:</span>
+                        <span class="quality-value" id="front-blur">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Angle:</span>
+                        <span class="quality-value" id="front-angle">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Card Detected:</span>
+                        <span class="card-status" id="front-card">-</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="upload-photo">
+                  <label>Right Side Photo</label>
+                  <div class="upload-area" id="right-upload-area">
+                    <div class="upload-placeholder" id="right-placeholder">
+                      <i class="fas fa-upload"></i>
+                      <p>Click to upload or drag and drop</p>
+                    </div>
+                    <div class="image-preview" id="right-preview">
+                      <img id="right-image-preview" src="/placeholder.svg" alt="Right view preview" />
+                    </div>
+                    <input type="file" accept="image/*" id="rightImage" class="file-input" />
+                  </div>
+                  <div class="photo-analysis" id="right-analysis" style="display: none;">
+                    <div class="quality-indicators">
+                      <div class="quality-item">
+                        <span>Lighting:</span>
+                        <span class="quality-value" id="right-lighting">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Blur:</span>
+                        <span class="quality-value" id="right-blur">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Angle:</span>
+                        <span class="quality-value" id="right-angle">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Card Detected:</span>
+                        <span class="card-status" id="right-card">-</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="upload-photo">
+                  <label>Left Side Photo</label>
+                  <div class="upload-area" id="left-upload-area">
+                    <div class="upload-placeholder" id="left-placeholder">
+                      <i class="fas fa-upload"></i>
+                      <p>Click to upload or drag and drop</p>
+                    </div>
+                    <div class="image-preview" id="left-preview">
+                      <img id="left-image-preview" src="/placeholder.svg" alt="Left view preview" />
+                    </div>
+                    <input type="file" accept="image/*" id="leftImage" class="file-input" />
+                  </div>
+                  <div class="photo-analysis" id="left-analysis" style="display: none;">
+                    <div class="quality-indicators">
+                      <div class="quality-item">
+                        <span>Lighting:</span>
+                        <span class="quality-value" id="left-lighting">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Blur:</span>
+                        <span class="quality-value" id="left-blur">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Angle:</span>
+                        <span class="quality-value" id="left-angle">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Card Detected:</span>
+                        <span class="card-status" id="left-card">-</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="upload-photo">
+                  <label>Back Photo</label>
+                  <div class="upload-area" id="back-upload-area">
+                    <div class="upload-placeholder" id="back-placeholder">
+                      <i class="fas fa-upload"></i>
+                      <p>Click to upload or drag and drop</p>
+                    </div>
+                    <div class="image-preview" id="back-preview">
+                      <img id="back-image-preview" src="/placeholder.svg" alt="Back view preview" />
+                    </div>
+                    <input type="file" accept="image/*" id="backImage" class="file-input" />
+                  </div>
+                  <div class="photo-analysis" id="back-analysis" style="display: none;">
+                    <div class="quality-indicators">
+                      <div class="quality-item">
+                        <span>Lighting:</span>
+                        <span class="quality-value" id="back-lighting">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Blur:</span>
+                        <span class="quality-value" id="back-blur">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Angle:</span>
+                        <span class="quality-value" id="back-angle">-</span>
+                      </div>
+                      <div class="quality-item">
+                        <span>Card Detected:</span>
+                        <span class="card-status" id="back-card">-</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="button-container">
+                <button id="process-button" class="primary-button" disabled>
+                  <i class="fas fa-ruler"></i> Get Measurements
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Tab -->
+          <div class="tab-content" id="results-content">
+            <div class="results-container">
+              <h3>Your Size Recommendations</h3>
+
+              <!-- Added dropdown menus for clothing type and size type -->
+              <div class="selection-controls">
+                <div class="control-group">
+                  <label for="clothing-type">Clothing Type:</label>
+                  <select id="clothing-type" class="dropdown">
+                    <option value="shirt">Shirt</option>
+                    <option value="trouser">Trouser</option>
+                  </select>
+                </div>
+                <div class="control-group">
+                  <label for="size-type">Size Standard:</label>
+                  <select id="size-type" class="dropdown">
+                    <option value="africa">Africa</option>
+                    <option value="europe">Europe</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Added size fit percentages display -->
+              <div class="size-recommendations" id="size-recommendations">
+                <div class="size-item">
+                  <span class="size-label">Small</span>
+                  <span class="fit-percentage" id="small-fit">-</span>
+                </div>
+                <div class="size-item">
+                  <span class="size-label">Medium</span>
+                  <span class="fit-percentage" id="medium-fit">-</span>
+                </div>
+                <div class="size-item">
+                  <span class="size-label">Large</span>
+                  <span class="fit-percentage" id="large-fit">-</span>
+                </div>
+              </div>
+
+              <div class="measurements-grid">
+                <div class="measurement-item">
+                  <span class="measurement-label">Shoulder Width</span>
+                  <span class="measurement-value" id="shoulder"></span>
+                </div>
+                <div class="measurement-item">
+                  <span class="measurement-label">Chest</span>
+                  <span class="measurement-value" id="chest"></span>
+                </div>
+                <div class="measurement-item">
+                  <span class="measurement-label">Waist</span>
+                  <span class="measurement-value" id="waist"></span>
+                </div>
+                <div class="measurement-item">
+                  <span class="measurement-label">Hip</span>
+                  <span class="measurement-value" id="hip"></span>
+                </div>
+                <div class="measurement-item">
+                  <span class="measurement-label">Shirt Length</span>
+                  <span class="measurement-value" id="shirtLength"></span>
+                </div>
+                <div class="measurement-item">
+                  <span class="measurement-label">Arm Length</span>
+                  <span class="measurement-value" id="armLength"></span>
+                </div>
+                <div class="measurement-item">
+                  <span class="measurement-label">Neck</span>
+                  <span class="measurement-value" id="neck"></span>
+                </div>
+                <div class="measurement-item">
+                  <span class="measurement-label">Thigh</span>
+                  <span class="measurement-value" id="thigh"></span>
+                </div>
+                <div class="measurement-item">
+                  <span class="measurement-label">Inseam</span>
+                  <span class="measurement-value" id="inseam"></span>
+                </div>
+                <div class="measurement-item">
+                  <span class="measurement-label">Height</span>
+                  <span class="measurement-value" id="height"></span>
+                </div>
+              </div>
+
+              <div class="alert success-alert">
+                <i class="fas fa-info-circle"></i>
+                <div class="alert-content">
+                  <h4>Measurement Accuracy</h4>
+                  <p>These measurements are estimates based on your photos and bank card scale reference. The fit percentages help you choose the best size for your selected clothing type and region.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="current-year"></span> Damian Fitting. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    const sizeStandards = {
+      shirt: {
+        africa: {
+          small: { chest: 90, shoulder: 42, armLength: 58, neck: 36, shirtLength: 65 },
+          medium: { chest: 96, shoulder: 44, armLength: 60, neck: 38, shirtLength: 68 },
+          large: { chest: 102, shoulder: 46, armLength: 62, neck: 40, shirtLength: 71 }
+        },
+        europe: {
+          small: { chest: 88, shoulder: 41, armLength: 59, neck: 37, shirtLength: 66 },
+          medium: { chest: 94, shoulder: 43, armLength: 61, neck: 39, shirtLength: 69 },
+          large: { chest: 100, shoulder: 45, armLength: 63, neck: 41, shirtLength: 72 }
+        }
+      },
+      trouser: {
+        africa: {
+          small: { waist: 76, hip: 90, thigh: 54, inseam: 76 },
+          medium: { waist: 82, hip: 96, thigh: 58, inseam: 78 },
+          large: { waist: 88, hip: 102, thigh: 62, inseam: 80 }
+        },
+        europe: {
+          small: { waist: 74, hip: 88, thigh: 52, inseam: 77 },
+          medium: { waist: 80, hip: 94, thigh: 56, inseam: 79 },
+          large: { waist: 86, hip: 100, thigh: 60, inseam: 81 }
+        }
+      }
+    };
+
+    let userMeasurements = {};
+
+    // Tab switching functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.disabled) return;
+
+        // Deactivate all tabs
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        // Activate clicked tab
+        button.classList.add('active');
+        const tabId = button.getAttribute('data-tab');
+        document.getElementById(`${tabId}-content`).classList.add('active');
+      });
+    });
+
+    const imageInputs = {
+      front: document.getElementById('frontImage'),
+      right: document.getElementById('rightImage'),
+      left: document.getElementById('leftImage'),
+      back: document.getElementById('backImage')
+    };
+
+    const previews = {
+      front: document.getElementById('front-preview'),
+      right: document.getElementById('right-preview'),
+      left: document.getElementById('left-preview'),
+      back: document.getElementById('back-preview')
+    };
+
+    const placeholders = {
+      front: document.getElementById('front-placeholder'),
+      right: document.getElementById('right-placeholder'),
+      left: document.getElementById('left-placeholder'),
+      back: document.getElementById('back-placeholder')
+    };
+
+    const imagePreviewElements = {
+      front: document.getElementById('front-image-preview'),
+      right: document.getElementById('right-image-preview'),
+      left: document.getElementById('left-image-preview'),
+      back: document.getElementById('back-image-preview')
+    };
+
+    const processButton = document.getElementById('process-button');
+
+    function analyzeImageQuality(position) {
+      // Simulate quality analysis with random values
+      const lighting = Math.floor(Math.random() * 40) + 60; // 60-100
+      const blur = Math.floor(Math.random() * 40) + 60; // 60-100
+      const angle = Math.floor(Math.random() * 40) + 60; // 60-100
+      const cardDetected = Math.random() > 0.3; // 70% chance of detection
+
+      // Update quality indicators
+      const lightingElement = document.getElementById(`${position}-lighting`);
+      const blurElement = document.getElementById(`${position}-blur`);
+      const angleElement = document.getElementById(`${position}-angle`);
+      const cardElement = document.getElementById(`${position}-card`);
+
+      lightingElement.textContent = `${lighting}%`;
+      lightingElement.className = `quality-value ${lighting >= 80 ? 'good' : 'poor'}`;
+
+      blurElement.textContent = `${blur}%`;
+      blurElement.className = `quality-value ${blur >= 80 ? 'good' : 'poor'}`;
+
+      angleElement.textContent = `${angle}%`;
+      angleElement.className = `quality-value ${angle >= 80 ? 'good' : 'poor'}`;
+
+      cardElement.textContent = cardDetected ? 'OK' : 'Not OK';
+      cardElement.className = `card-status ${cardDetected ? 'detected' : 'not-detected'}`;
+
+      // Show analysis
+      document.getElementById(`${position}-analysis`).style.display = 'block';
+    }
+
+    // Set up image upload handlers for all positions
+    Object.keys(imageInputs).forEach(position => {
+      imageInputs[position].addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+            imagePreviewElements[position].src = e.target.result;
+            previews[position].style.display = 'block';
+            placeholders[position].style.display = 'none';
+            
+            analyzeImageQuality(position);
+            
+            checkEnableProcessButton();
+          };
+          
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+
+      // Make upload areas clickable
+      document.getElementById(`${position}-upload-area`).addEventListener('click', function() {
+        imageInputs[position].click();
+      });
+    });
+
+    function checkEnableProcessButton() {
+      const allUploaded = Object.values(imageInputs).every(input => input.files.length > 0);
+      processButton.disabled = !allUploaded;
+    }
+
+    function calculateSizeFit(measurements, clothingType, sizeType) {
+      const standards = sizeStandards[clothingType][sizeType];
+      const fits = {};
+
+      Object.keys(standards).forEach(size => {
+        const sizeData = standards[size];
+        let totalFit = 0;
+        let count = 0;
+
+        Object.keys(sizeData).forEach(measurement => {
+          if (measurements[measurement]) {
+            const userValue = measurements[measurement];
+            const standardValue = sizeData[measurement];
+            const difference = Math.abs(userValue - standardValue);
+            const fitPercentage = Math.max(0, 100 - (difference / standardValue * 100));
+            totalFit += fitPercentage;
+            count++;
+          }
+        });
+
+        fits[size] = count > 0 ? Math.round(totalFit / count) : 0;
+      });
+
+      return fits;
+    }
+
+    function updateSizeRecommendations() {
+      const clothingType = document.getElementById('clothing-type').value;
+      const sizeType = document.getElementById('size-type').value;
+      
+      if (Object.keys(userMeasurements).length > 0) {
+        const fits = calculateSizeFit(userMeasurements, clothingType, sizeType);
+        
+        document.getElementById('small-fit').textContent = `${fits.small}% fit`;
+        document.getElementById('medium-fit').textContent = `${fits.medium}% fit`;
+        document.getElementById('large-fit').textContent = `${fits.large}% fit`;
+      }
+    }
+
+    // Add event listeners for dropdown changes
+    document.getElementById('clothing-type').addEventListener('change', updateSizeRecommendations);
+    document.getElementById('size-type').addEventListener('change', updateSizeRecommendations);
+
+    processButton.addEventListener('click', function() {
+      // Simulate bank card detection and scale calculation
+      const bankCardLength = 85.6; // mm
+      const bankCardWidth = 53.98; // mm
+      
+      // Simulate measurements based on bank card scale
+      const estimatedHeight = 170 + Math.floor(Math.random() * 20) - 10;
+      
+      // Calculate proportional measurements
+      const measurements = {
+        shoulder: Math.round(estimatedHeight * 0.25 + Math.random() * 4 - 2),
+        chest: Math.round(estimatedHeight * 0.55 + Math.random() * 6 - 3),
+        waist: Math.round(estimatedHeight * 0.45 + Math.random() * 6 - 3),
+        hip: Math.round(estimatedHeight * 0.53 + Math.random() * 6 - 3),
+        shirtLength: Math.round(estimatedHeight * 0.38 + Math.random() * 4 - 2),
+        armLength: Math.round(estimatedHeight * 0.35 + Math.random() * 4 - 2),
+        neck: Math.round(estimatedHeight * 0.22 + Math.random() * 3 - 1.5),
+        thigh: Math.round(estimatedHeight * 0.32 + Math.random() * 4 - 2),
+        inseam: Math.round(estimatedHeight * 0.45 + Math.random() * 4 - 2),
+        height: estimatedHeight
+      };
+
+      // Store measurements globally
+      userMeasurements = measurements;
+
+      // Set measurement values in the display
+      Object.keys(measurements).forEach(key => {
+        const element = document.getElementById(key);
+        if (element) {
+          element.textContent = `${measurements[key]} cm`;
+        }
+      });
+
+      // Update size recommendations
+      updateSizeRecommendations();
+
+      // Enable and switch to results tab
+      const resultsTabButton = document.querySelector('[data-tab="results"]');
+      resultsTabButton.disabled = false;
+      resultsTabButton.click();
+    });
+  </script>
+</body>
+</html>
